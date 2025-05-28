@@ -33,11 +33,26 @@
             <p>A bit more about your personality, your core values, or what drives you. For example: I'm a problem-solver at heart, constantly seeking new challenges and opportunities to learn and grow. Outside of my professional interests, I enjoy [Your Hobbies/Interests].</p>
         </div>
 
-        <div class="section" id="carousel-section">
-            <h2>Gallery / Rotating Pictures</h2>
-            <div class="carousel">
-                <p><em>Rotating pictures will go here! (We'll add this feature later)</em></p>
+        <div class="section" id="gallery-section">
+            <h2>My Gallery</h2>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="https://picsum.photos/seed/img1/700/400" alt="Random placeholder image 1" onclick="openLightbox(0)">
+                    <img src="https://picsum.photos/seed/img2/700/400" alt="Random placeholder image 2" onclick="openLightbox(1)">
+                    <img src="https://picsum.photos/seed/img3/700/400" alt="Random placeholder image 3" onclick="openLightbox(2)">
+                    <img src="https://picsum.photos/seed/img4/700/400" alt="Random placeholder image 4" onclick="openLightbox(3)">
+                    <img src="https://picsum.photos/seed/img5/700/400" alt="Random placeholder image 5" onclick="openLightbox(4)">
+                </div>
+                <a class="carousel-prev" onclick="moveCarousel(-1)">&#10094;</a>
+                <a class="carousel-next" onclick="moveCarousel(1)">&#10095;</a>
             </div>
+        </div>
+
+        <div id="myLightbox" class="lightbox-modal">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img class="lightbox-content" id="lightboxImg">
+            <a class="lightbox-prev" onclick="changeLightboxImage(-1)">&#10094;</a>
+            <a class="lightbox-next" onclick="changeLightboxImage(1)">&#10095;</a>
         </div>
 
         <div class="section" id="skills">
@@ -46,14 +61,16 @@
             <ul>
                 <li>Technology 1 (e.g., Python)</li>
                 <li>Technology 2 (e.g., JavaScript)</li>
-                <li>Technology 3 (e.g., AWS)
+                <li>Technology 3 (e.g., AWS)</li>
                 <li>Tool 1 (e.g., Git & GitHub)</li>
             </ul>
         </div>
 
         <footer>
             <p>&copy; 2024 Tirmidi Mohamed. All rights reserved.</p>
-            </footer>
+        </footer>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
