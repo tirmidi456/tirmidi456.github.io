@@ -13,7 +13,10 @@ function moveCarousel(n) {
     } else if (carouselIndex < 0) {
         carouselIndex = totalCarouselImages - 1;
     }
-    carouselSlide.style.transform = `translateX(-${carouselIndex * 100}%)`;
+    // Ensure carouselSlide exists before trying to change its style
+    if (carouselSlide) {
+        carouselSlide.style.transform = `translateX(-${carouselIndex * 100}%)`;
+    }
 }
 
 // --- Lightbox Logic ---
@@ -21,32 +24,39 @@ const lightbox = document.getElementById('myLightbox');
 const lightboxImage = document.getElementById('lightboxImg');
 let currentLightboxIndex = 0;
 
-// This list of images should match the ones in your HTML
-// For simplicity, we're getting them from the carousel directly.
-// Ensure your `onclick="openLightbox(INDEX)"` in HTML has the correct index.
-const imagesForLightbox = Array.from(carouselImages).map(img => img.src);
-
+// Ensure carouselImages is not null and has elements before mapping
+const imagesForLightbox = carouselImages && carouselImages.length > 0 
+    ? Array.from(carouselImages).map(img => img.src) 
+    : [];
 
 function openLightbox(index) {
+    if (imagesForLightbox.length === 0) return; // Don't open if no images
     currentLightboxIndex = index;
-    lightbox.style.display = "block";
-    lightboxImage.src = imagesForLightbox[currentLightboxIndex];
-    document.addEventListener('keydown', handleKeyboardNavigation);
+    if (lightbox && lightboxImage) { // Check if lightbox elements exist
+        lightbox.style.display = "block";
+        lightboxImage.src = imagesForLightbox[currentLightboxIndex];
+        document.addEventListener('keydown', handleKeyboardNavigation);
+    }
 }
 
 function closeLightbox() {
-    lightbox.style.display = "none";
-    document.removeEventListener('keydown', handleKeyboardNavigation);
+    if (lightbox) { // Check if lightbox element exists
+        lightbox.style.display = "none";
+        document.removeEventListener('keydown', handleKeyboardNavigation);
+    }
 }
 
 function changeLightboxImage(n) {
+    if (imagesForLightbox.length === 0) return; // Don't change if no images
     currentLightboxIndex += n;
     if (currentLightboxIndex >= imagesForLightbox.length) {
         currentLightboxIndex = 0;
     } else if (currentLightboxIndex < 0) {
         currentLightboxIndex = imagesForLightbox.length - 1;
     }
-    lightboxImage.src = imagesForLightbox[currentLightboxIndex];
+    if (lightboxImage) { // Check if lightbox image element exists
+        lightboxImage.src = imagesForLightbox[currentLightboxIndex];
+    }
 }
 
 function handleKeyboardNavigation(event) {
@@ -59,7 +69,7 @@ function handleKeyboardNavigation(event) {
     }
 }
 
-// Initialize carousel to show the first image
-if (carouselSlide) { // Make sure carouselSlide element exists
+// Initialize carousel to show the first image, only if carouselSlide exists
+if (carouselSlide) {
     carouselSlide.style.transform = `translateX(0%)`;
 }
