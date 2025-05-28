@@ -108,3 +108,128 @@ footer {
     color: #aaa;
     border-top: 1px solid #555;
 }
+/* --- Carousel and Lightbox Styles --- */
+
+/* Carousel Container */
+.carousel-container {
+    position: relative;
+    max-width: 700px; /* Adjust as needed */
+    margin: 20px auto;
+    overflow: hidden; /* Important for containing slides */
+    border: 2px solid #4CAF50; /* Green accent border */
+    border-radius: 5px;
+}
+
+.carousel-slide {
+    display: flex; /* Align slides horizontally */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+    width: 100%; /* Make images responsive within the slide container */
+    flex-shrink: 0; /* Prevent images from shrinking if container is too small */
+    object-fit: cover; /* Cover the area, might crop */
+    max-height: 400px; /* Limit image height in carousel view */
+    cursor: pointer; /* Indicate images are clickable */
+}
+
+/* Carousel Navigation Buttons (optional, if you want visible prev/next on the carousel itself) */
+.carousel-prev,
+.carousel-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.3s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.carousel-next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background-color: #4CAF50; /* Green accent on hover */
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    padding-top: 60px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.95); /* Black w/ opacity */
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 85%;
+    max-width: 900px; /* Max width for the image */
+    max-height: 85vh; /* Max height relative to viewport */
+    object-fit: contain; /* Show whole image, no cropping */
+}
+
+/* Close button for lightbox */
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Lightbox Navigation Arrows */
+.lightbox-prev,
+.lightbox-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -30px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.3s ease;
+    user-select: none;
+    border-radius: 0 3px 3px 0;
+}
+
+.lightbox-prev {
+    left: 15px;
+    border-radius: 3px 0 0 3px;
+}
+
+.lightbox-next {
+    right: 15px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background-color: rgba(200,200,200,0.3);
+}
